@@ -3,7 +3,6 @@ package co.unicauca.microkernel.common.entities;
 /**
  * Producto
  *
- * @author Libardo, Julio
  */
 public class Cerveza {
 
