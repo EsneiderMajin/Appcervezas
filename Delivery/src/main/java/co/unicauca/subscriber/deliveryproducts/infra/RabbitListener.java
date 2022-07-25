@@ -17,10 +17,7 @@ import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Properties;
-/**
- *
- * @author ahurtado,wpantoja
- */
+
 public class RabbitListener implements Runnable{
 
     private final static String FILE_NAME = "connectionProperties.properties";
