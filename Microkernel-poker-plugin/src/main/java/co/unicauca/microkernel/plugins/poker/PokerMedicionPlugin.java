@@ -14,24 +14,22 @@ import co.unicauca.microkernel.common.interfaces.IMedicionPlugin;
  */
 public class PokerMedicionPlugin implements IMedicionPlugin{
         
-        //Cerveza product;
-        //double weight = product.getWeight();
-        
-        //double estado;
-    
-    public double calculateCost(Medicion medicion) {
-        
-        
-        Cerveza cerveza = medicion.getProduct();
-        double estado;
-        double weight = cerveza.getWeight();
+       Cerveza product;
+       double estado=0;
+      
        
-        if(weight==330){
-         estado=1;
-        }
-        else{
-        estado=0;
-        }
-        return estado;
-    }
+       
+        @Override
+    public double calculateMedicion(Medicion delivery) {
+        
+       
+   product= delivery.getProduct();
+   
+   if((product.getWeight()>=330)&& (product.getWeight()<=338)){
+
+       estado=1;
+   }
+   
+   return estado ;
+}
 }

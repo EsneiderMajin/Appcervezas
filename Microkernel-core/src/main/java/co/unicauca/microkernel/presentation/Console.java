@@ -1,6 +1,6 @@
 package co.unicauca.microkernel.presentation;
 
-import co.unicauca.microkernel.business.DeliveryService;
+import co.unicauca.microkernel.business.MedicionService;
 import co.unicauca.microkernel.business.ProductService;
 import co.unicauca.microkernel.common.entities.Medicion;
 import co.unicauca.microkernel.common.entities.Cerveza;
@@ -11,13 +11,13 @@ import java.util.Scanner;
 public class Console {
 
     private ProductService productService;
-    private DeliveryService deliveryService;
+    private MedicionService deliveryService;
 
     private Scanner scanner;
 
     public Console(){
         productService = new ProductService();
-        deliveryService = new DeliveryService();
+        deliveryService = new MedicionService();
         scanner = new Scanner(System.in);
     }
 

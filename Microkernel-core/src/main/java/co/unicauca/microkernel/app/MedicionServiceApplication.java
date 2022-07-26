@@ -7,7 +7,7 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DeliveryServiceApplication {
+public class MedicionServiceApplication {
 
     public static void main(String[] args) {
 
@@ -28,7 +28,7 @@ public class DeliveryServiceApplication {
      *
      */
     private static String getBaseFilePath() {
-        String path = DeliveryServiceApplication.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        String path = MedicionServiceApplication.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 
         File pathFile = new File(path);
         if (pathFile.isFile()) {

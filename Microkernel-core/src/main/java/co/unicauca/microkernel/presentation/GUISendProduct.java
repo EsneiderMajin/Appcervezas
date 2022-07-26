@@ -6,22 +6,23 @@
 package co.unicauca.microkernel.presentation;
 
 import co.unicauca.microkernel.infra.Publisher;
-import co.unicauca.microkernel.business.DeliveryService;
+import co.unicauca.microkernel.business.MedicionService;
 import co.unicauca.microkernel.business.ProductService;
+import co.unicauca.microkernel.common.entities.BrazoEmpuje;
 import co.unicauca.microkernel.common.entities.Medicion;
 import co.unicauca.microkernel.common.entities.Cerveza;
 import com.google.gson.Gson;
+import java.awt.Color;
 import java.util.List;
 
 /**
  *
  * @author ahurtado
  */
-
-public class GUISendProduct extends javax.swing.JFrame {
-
+public class GUISendProduct extends javax.swing.JFrame{
+    
     private ProductService productService;
-    private DeliveryService deliveryService;
+    private MedicionService deliveryService;
     List<Cerveza> products;
     Publisher publisher;
 
@@ -38,7 +39,7 @@ public class GUISendProduct extends javax.swing.JFrame {
         for (int index = 0; index < products.size(); index++) {
         jComboBox1.addItem(products.get(index).getName());
         }
-         */
+        */
         txtEstado.setEnabled(false);
         txtEstado.setText("...");
         jButton2.setVisible(false);
@@ -78,13 +79,19 @@ public class GUISendProduct extends javax.swing.JFrame {
 
         jLabel6.setText("Nombre Comercial");
 
-        jLabel2.setText("Digite el id de cerveza");
+        jLabel2.setText("Digite el id de la cerveza");
 
-        jLabel3.setText("Digite el peso en Gramos");
+        jLabel3.setText("Digite el peso en Kg");
 
         jLabel4.setText("Indique el código de la marca");
 
         jLabel5.setText("Estado del proceso");
+
+        txtEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEstadoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -144,7 +151,7 @@ public class GUISendProduct extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_START);
 
-        jButton1.setText("Calcular Medicion");
+        jButton1.setText("Calcular Valor de Envío");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -152,7 +159,7 @@ public class GUISendProduct extends javax.swing.JFrame {
         });
         jPanel2.add(jButton1);
 
-        jButton2.setText("Enviar Notificacion");
+        jButton2.setText("Realizar Envío Pago a Contra Entrega");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -169,50 +176,58 @@ public class GUISendProduct extends javax.swing.JFrame {
         // TODO add your handling code here:
         //Cerveza selectedProduct = products.get(this.jComboBox1.getSelectedIndex());
         //Cerveza cerveza = cerveza.getName()
-
+        
         Cerveza objCerveza = new Cerveza();
         objCerveza.setName(txtNombreComercial.getText());
         objCerveza.setProductId(Integer.parseInt(txtIdCerveza.getText()));
         objCerveza.setWeight(Double.parseDouble(txtPesoCerveza.getText()));
-
+        objCerveza.setActuador(new BrazoEmpuje());
         Medicion deliveryEntity = new Medicion(objCerveza,
                 Double.parseDouble(txtPesoCerveza.getText()),
                 txtMarca.getText());
         try {
-            deliveryService = new DeliveryService();
-            double cost = deliveryService.calculateDeliveryCost(deliveryEntity);
+            deliveryService = new MedicionService();
+           double cost = deliveryService.calculateDeliveryCost(deliveryEntity);
 
             if (cost == 1) {
                 txtEstado.setText("Aprobado");
+                txtEstado.setBackground(Color.green);
                 jButton2.setVisible(true);
             } else {
-
+                jButton2.setVisible(false);
                 txtEstado.setText("No Aprobado");
+                txtEstado.setBackground(Color.red);
+                
+              
+            
             }
+            
+            
 
             //txtEstado.setText(""+cost);
         } catch (Exception exception) {
             System.out.println("No fue posible calcular si fue aprobado. " + exception.getMessage());
         }
 
-
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         //Cerveza selectedProduct = products.get(this.jComboBox1.getSelectedIndex());
         Cerveza objCerveza = new Cerveza();
-                txtEstado.setText("Aprobado");
-                objCerveza.setName(txtNombreComercial.getText());
-                objCerveza.setProductId(Integer.parseInt(txtIdCerveza.getText()));
-                objCerveza.setWeight(Double.parseDouble(txtPesoCerveza.getText()));
-                Gson gson = new Gson();
-                String msgJson = gson.toJson(objCerveza);
-                publisher.publish(msgJson);
-                jButton2.setVisible(false);
-
-
+        objCerveza.setName(txtNombreComercial.getText());
+        objCerveza.setProductId(Integer.parseInt(txtIdCerveza.getText()));
+        objCerveza.setWeight(Double.parseDouble(txtPesoCerveza.getText()));
+        Gson gson = new Gson();
+        String msgJson = gson.toJson(objCerveza);
+        publisher.publish(msgJson);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEstadoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

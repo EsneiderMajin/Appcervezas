@@ -45,7 +45,7 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Listado de Aprobados:");
+        jLabel1.setText("Lista de Aprobados");
         getContentPane().add(jLabel1, java.awt.BorderLayout.PAGE_START);
 
         jScrollPane1.setViewportView(jList1);
