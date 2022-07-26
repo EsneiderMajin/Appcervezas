@@ -1,15 +1,12 @@
 package co.unicauca.microkernel.common.entities;
 
-/**
- * Envio
- * @author Libardo, Julio
- */
+
 public class Medicion {
 
     private Cerveza product;
     private double peso;
     /**
-     * Código del país donde será entregado el producto.
+     * Código de la empresa de cerveza
      * */
     private String code;
 

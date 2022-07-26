@@ -1,8 +1,7 @@
 package co.unicauca.microkernel.app;
 
 import co.unicauca.microkernel.plugin.manager.PluginManager;
-import co.unicauca.microkernel.presentation.Console;
-import co.unicauca.microkernel.presentation.GUISendProduct;
+import co.unicauca.microkernel.presentation.GUISend;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +14,7 @@ public class MedicionServiceApplication {
         String basePath = getBaseFilePath();
         try {
             PluginManager.init(basePath);
-            new GUISendProduct().setVisible(true);
+            new GUISend().setVisible(true);
         } catch (Exception ex) {
             Logger.getLogger("Application").log(Level.SEVERE, "Error al ejecutar la aplicación", ex);
         }

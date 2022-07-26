@@ -10,7 +10,7 @@ public class Cerveza extends ItemMedicion {
     
 
     /**
-     * Peso del producto, en kilogramos.
+     * Peso del producto, en ml.
      *
      */
     private double weight;
@@ -49,7 +49,8 @@ public class Cerveza extends ItemMedicion {
     public void setWeight(double weight) {
         this.weight = weight;
     }
-
+    
+    
        
     
     

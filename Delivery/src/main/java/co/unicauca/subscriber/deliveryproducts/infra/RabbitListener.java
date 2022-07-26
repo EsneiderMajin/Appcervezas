@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package co.unicauca.subscriber.deliveryproducts.infra;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -17,10 +13,7 @@ import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Properties;
-/**
- *
- * @author ahurtado,wpantoja
- */
+
 public class RabbitListener implements Runnable{
 
     private final static String FILE_NAME = "connectionProperties.properties";
@@ -41,11 +34,11 @@ public class RabbitListener implements Runnable{
             Connection connection = factory.newConnection();
             Channel channel = connection.createChannel();
             channel.queueDeclare( connectionProperties.getProperty("queueName"), false, false, false, null);
-            System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+            System.out.println(" [*] Esperenado Mensajes. To exit press CTRL+C");
             
             DeliverCallback deliverCallback = (consumerTag, delivery) -> {
                 String message = new String(delivery.getBody(), "UTF-8");
-                System.out.println(" [x] Received '" + message + "'");
+                System.out.println(" [x] Recibido '" + message + "'");
                 myOffice.onMessage(message);
             };
             channel.basicConsume(connectionProperties.getProperty("queueName"), true, deliverCallback, consumerTag -> { });

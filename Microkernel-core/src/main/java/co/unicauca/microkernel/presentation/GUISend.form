@@ -128,14 +128,14 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Digite el id de la cerveza"/>
+            <Property name="text" type="java.lang.String" value="Id de la cerveza"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtPesoCerveza">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Digite el peso en Kg"/>
+            <Property name="text" type="java.lang.String" value="Digite el peso en Ml"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
@@ -170,7 +170,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Calcular Valor de Env&#xed;o"/>
+            <Property name="text" type="java.lang.String" value="Calcular Medicion"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
@@ -178,7 +178,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Realizar Env&#xed;o Pago a Contra Entrega"/>
+            <Property name="text" type="java.lang.String" value="Enviar Notificacion"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>

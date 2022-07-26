@@ -9,10 +9,7 @@ import co.unicauca.microkernel.common.interfaces.IPublisherPlugin;
 import co.unicauca.microkernel.plugin.manager.PluginManager;
 import co.unicauca.microkernel.common.interfaces.IMedicionPlugin;
 
-/**
- *
- * @author ahurtado, wpantoja
- */
+
 public class Publisher {
 
     public Publisher() {

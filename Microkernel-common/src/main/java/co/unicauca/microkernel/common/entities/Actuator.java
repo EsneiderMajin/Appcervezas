@@ -4,11 +4,10 @@
  */
 package co.unicauca.microkernel.common.entities;
 
-/**
- *
- * @author PC
- */
+
 public abstract class Actuator {
+    //
+    public abstract void actuar(double estado);
+
     
-    public abstract void actuar();
 }

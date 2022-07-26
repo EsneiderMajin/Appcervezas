@@ -7,16 +7,12 @@ package co.unicauca.microkernel.common.interfaces;
 
 import java.util.Properties;
 
-/**
- *
- * @author ahurtado, wpantoja
- */
 public interface IPublisherPlugin {
     
     /**
      *
      * @param msg
-     * Mensaje a ser publicado a través de un servicio de mensajería
+     * Mensaje a ser publicado a travï¿½s de un servicio de mensajerï¿½a
      */
     public void publish(String msg);
     public void setProperties(Properties publisherProperties);

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package co.unicauca.subscriber.deliveryproducts.presentation;
 
 import co.unicauca.microkernel.common.entities.Cerveza;
@@ -11,16 +7,13 @@ import co.unicauca.subscriber.deliveryproducts.infra.RabbitListener;
 import com.google.gson.Gson;
 import javax.swing.DefaultListModel;
 
-/**
- *
- * @author ahurtado
- */
+
 public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
 
     DefaultListModel modelList;
-    /**
-     * Creates new form DeliveryOffice
-     */
+    
+     // Creo new form DeliveryOffice
+     
     public DeliveryOffice() {
         initComponents();
         Runnable subscriber = new RabbitListener(this);
@@ -38,15 +31,15 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Lista de Aprobados");
-        getContentPane().add(jLabel1, java.awt.BorderLayout.PAGE_START);
+        jLabel1.setText("Aprobados:");
+        jPanel1.add(jLabel1);
 
         jScrollPane1.setViewportView(jList1);
 
@@ -57,9 +50,7 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -23,12 +23,13 @@ public class PluginManager {
     private static PluginManager instance;
 
     private Properties pluginProperties;
-
+    
     private PluginManager() {
         pluginProperties = new Properties();
     }
-
+    
     public static PluginManager getInstance() {
+        
         return instance;
     }
 

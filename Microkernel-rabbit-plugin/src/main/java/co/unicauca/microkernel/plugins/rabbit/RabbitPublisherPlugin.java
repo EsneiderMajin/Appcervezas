@@ -15,10 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Properties;
 
-/**
- *
- * @author ahurtado,wpantoja
- */
+
 public class RabbitPublisherPlugin implements IPublisherPlugin{
     private Properties properties;
     @Override

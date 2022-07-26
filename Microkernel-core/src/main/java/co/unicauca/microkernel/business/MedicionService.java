@@ -15,7 +15,9 @@ public class MedicionService {
         if (plugin == null) {
             throw new Exception("No hay un plugin disponible para la cerveza indicada indicada: " + countryCode);
         }
-
+        
+        
+        
         return plugin.calculateMedicion(deliveryData);
 
     }

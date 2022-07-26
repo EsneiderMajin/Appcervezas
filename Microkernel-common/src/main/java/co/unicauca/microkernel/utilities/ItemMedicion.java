@@ -14,7 +14,6 @@ public abstract class ItemMedicion {
     protected Sensor miSensor;
  protected Actuator miActuador;
  
- 
  public void setSensor(Sensor sensor) {
  miSensor=sensor;
  }
@@ -22,5 +21,11 @@ public abstract class ItemMedicion {
  miActuador = actuador;
  }
 
- 
+    public Sensor getMiSensor() {
+        return miSensor;
+    }
+
+    public Actuator getMiActuador() {
+        return miActuador;
+    }
 }
