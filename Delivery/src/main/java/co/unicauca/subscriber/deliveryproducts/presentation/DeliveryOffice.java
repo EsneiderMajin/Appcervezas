@@ -6,20 +6,25 @@ import co.unicauca.subscriber.deliveryproducts.infra.ISubscriber;
 import co.unicauca.subscriber.deliveryproducts.infra.RabbitListener;
 import com.google.gson.Gson;
 import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 
 
 public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
 
-    DefaultListModel modelList;
+    DefaultTableModel modelList;
     
      // Creo new form DeliveryOffice
      
     public DeliveryOffice() {
         initComponents();
         Runnable subscriber = new RabbitListener(this);
-        modelList = new DefaultListModel();
-        jList1.setModel(modelList);
+        modelList = new DefaultTableModel();
+        modelList.addColumn("Id");
+        modelList.addColumn("Nombre");
+        modelList.addColumn("Peso");
+        //jList1.setModel(modelList);
         new Thread(subscriber).start();
+        this.tableCervezas.setModel(modelList);
     }
 
     /**
@@ -33,17 +38,48 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableCervezas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Aprobados:");
-        jPanel1.add(jLabel1);
 
-        jScrollPane1.setViewportView(jList1);
+        tableCervezas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Id", "Nombre", "Peso"
+            }
+        ));
+        jScrollPane2.setViewportView(tableCervezas);
 
-        jPanel1.add(jScrollPane1);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 38, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -85,16 +121,23 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tableCervezas;
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void onMessage(String msg) {
+        public void onMessage(String msg) {
       Gson gson = new Gson();
       Cerveza product = gson.fromJson(msg, Cerveza.class);
-      modelList.addElement(product.getName());
-      jList1.paintImmediately(jList1.getBounds());
+      String []info=new String[3];
+      info[0]=String.valueOf(
+              product.getProductId()); 
+      info[1]=product.getName();
+      info[2]=String.valueOf(product.getWeight());
+      modelList.addRow(info);
+     //modelList.addElement(product.getName()); 
+    //jList1.paintImmediately(jList1.getBounds());
     }
+    
 }

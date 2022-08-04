@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container mt-4">
+		Aplicacion Cerveza
+		<a th:href="@{/new}" class="btn btn-secondary">Nueva Cerveza</a>
+		
+		<table class="table">
+			<thead>
+			<tr>
+			<th style="background-color: yellow;">ID CERVEZA</th>
+			<th style="background-color: yellow;">NOMBRE</th>
+			<th style="background-color: yellow;">PESO</th>
+			<th style="background-color: yellow;">OPCIONES</th>
+			</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cerveza:${cervezas}">
+					<td th:text="${cerveza.id}"></td>
+					<td th:text="${cerveza.name}"></td>
+					<td th:text="${cerveza.weight}"></td>
+					<td>
+					<a th:href="@{/eliminar/}+${cerveza.id}" class="btn btn-danger">Eliminar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script  src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="funciones.js"></script>
+</body>
+</html>
