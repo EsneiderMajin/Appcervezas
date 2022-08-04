@@ -191,11 +191,17 @@ public class GUISend extends javax.swing.JFrame{
            double cost = deliveryService.calculateDeliveryCost(deliveryEntity);
            objCerveza.getMiActuador().actuar(cost);  
             if (cost == 1) {
-                
+                Cerveza objCerveza2 = new Cerveza();
+                objCerveza2.setName(txtNombreComercial.getText());
+                objCerveza2.setProductId(Integer.parseInt(txtIdCerveza.getText()));
+                objCerveza2.setWeight(Double.parseDouble(txtPesoCerveza.getText()));
+                Gson gson = new Gson();
+                String msgJson = gson.toJson(objCerveza2);
+                publisher.publish(msgJson);
                 txtEstado.setText("Aprobado");
-
                 txtEstado.setBackground(Color.green);
-                jButton2.setVisible(true);
+                //jButton2.setVisible(true);
+                
             } else {
                 
                 txtEstado.setText("No Aprobado");
@@ -216,12 +222,12 @@ public class GUISend extends javax.swing.JFrame{
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         //Cerveza selectedProduct = products.get(this.jComboBox1.getSelectedIndex());
-        Cerveza objCerveza = new Cerveza();
-        objCerveza.setName(txtNombreComercial.getText());
-        objCerveza.setProductId(Integer.parseInt(txtIdCerveza.getText()));
-        objCerveza.setWeight(Double.parseDouble(txtPesoCerveza.getText()));
+        Cerveza objCerveza2 = new Cerveza();
+        objCerveza2.setName(txtNombreComercial.getText());
+        objCerveza2.setProductId(Integer.parseInt(txtIdCerveza.getText()));
+        objCerveza2.setWeight(Double.parseDouble(txtPesoCerveza.getText()));
         Gson gson = new Gson();
-        String msgJson = gson.toJson(objCerveza);
+        String msgJson = gson.toJson(objCerveza2);
         publisher.publish(msgJson);
         jButton2.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
