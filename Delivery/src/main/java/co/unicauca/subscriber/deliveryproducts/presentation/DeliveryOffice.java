@@ -22,6 +22,7 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
         modelList.addColumn("Id");
         modelList.addColumn("Nombre");
         modelList.addColumn("Peso");
+        modelList.addColumn("Estado");
         //jList1.setModel(modelList);
         new Thread(subscriber).start();
         this.tableCervezas.setModel(modelList);
@@ -43,19 +44,20 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Aprobados:");
+        jLabel1.setText("Lista:");
 
         tableCervezas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Id", "Nombre", "Peso"
+                "Id", "Nombre", "Peso", "Estado"
             }
         ));
+        tableCervezas.setToolTipText("");
         jScrollPane2.setViewportView(tableCervezas);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -66,7 +68,7 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 38, Short.MAX_VALUE))
+                .addGap(0, 66, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,11 +132,11 @@ public class DeliveryOffice extends javax.swing.JFrame implements ISubscriber {
         public void onMessage(String msg) {
       Gson gson = new Gson();
       Cerveza product = gson.fromJson(msg, Cerveza.class);
-      String []info=new String[3];
-      info[0]=String.valueOf(
-              product.getProductId()); 
+      String []info=new String[4];
+      info[0]=String.valueOf(product.getProductId()); 
       info[1]=product.getName();
       info[2]=String.valueOf(product.getWeight());
+      info[3]=product.getEstate();
       modelList.addRow(info);
      //modelList.addElement(product.getName()); 
     //jList1.paintImmediately(jList1.getBounds());
