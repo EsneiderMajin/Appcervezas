@@ -195,17 +195,26 @@ public class GUISend extends javax.swing.JFrame{
                 objCerveza2.setName(txtNombreComercial.getText());
                 objCerveza2.setProductId(Integer.parseInt(txtIdCerveza.getText()));
                 objCerveza2.setWeight(Double.parseDouble(txtPesoCerveza.getText()));
+                objCerveza2.setEstate("Aprobado");
                 Gson gson = new Gson();
                 String msgJson = gson.toJson(objCerveza2);
+                
                 publisher.publish(msgJson);
                 txtEstado.setText("Aprobado");
                 txtEstado.setBackground(Color.green);
                 //jButton2.setVisible(true);
                 
             } else {
-                
-                txtEstado.setText("No Aprobado");
-              
+                Cerveza objCerveza3 = new Cerveza();
+                objCerveza3.setName(txtNombreComercial.getText());
+                objCerveza3.setProductId(Integer.parseInt(txtIdCerveza.getText()));
+                objCerveza3.setWeight(Double.parseDouble(txtPesoCerveza.getText()));
+                objCerveza3.setEstate("No Aprobado");
+                Gson gson = new Gson();
+                String msgJson = gson.toJson(objCerveza3);
+                publisher.publish(msgJson);
+                txtEstado.setText(" No Aprobado");
+                //jButton2.setVisible(true);
                 txtEstado.setBackground(Color.red);
                     
             

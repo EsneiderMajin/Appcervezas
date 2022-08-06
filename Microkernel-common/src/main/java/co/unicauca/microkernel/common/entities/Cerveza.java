@@ -7,6 +7,9 @@ public class Cerveza extends ItemMedicion {
 
     private int productId;
     private String name;
+
+    
+    private String estate;
     
 
     /**
@@ -20,10 +23,20 @@ public class Cerveza extends ItemMedicion {
 
     }
 
-    public Cerveza(int productId, String name, double weight) {
+    public Cerveza(int productId, String name, String estate, double weight) {
         this.productId = productId;
         this.name = name;
+        this.estate = estate;
         this.weight = weight;
+    }
+
+   
+    public String getEstate() {
+        return estate;
+    }
+
+    public void setEstate(String estate) {
+        this.estate = estate;
     }
 
     public int getProductId() {
